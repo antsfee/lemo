@@ -1,0 +1,39 @@
+@charset "utf-8"
+
+html,body{margin:0; padding:0;}
+
+div,p{margin:0; padding:0;}
+
+form,input,legend,table,tbody,tfoot,tr,thead,td,th{border-collapse:collapse; border-spaceing:0; border:none;}
+
+
+ul,li,ol,dl,dt,dd{margin:0; padding:0; list-style:none; list-style-type:none;}
+
+
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section,video,audio,canvas {
+    margin:0;
+    padding:0;
+}
+
+abbr,address,b,strong.blockquote,cite,acronym,strong,em,i,code,pre,samp{margin:0;padding:0;}
+
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+img , fieldset{border:none}
+
+
+a:link{	color:#1e0307;	}
+a:visited{	color:#1e0307;	}
+a:hover{	color:#1e0307;	}
+a:active{	color:#1e0307;	}
