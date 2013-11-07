@@ -26,3 +26,22 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta():
         model = Article
         fields = ('title', 'content', 'tag', 'user')
+########################################################################
+class Map_TabSerializer(serializers.ModelSerializer):
+    
+    class Meta():
+            
+        models = Map_Tab
+        fields=('tabName')
+            
+
+class Map_Tag:
+    
+    class Meta():
+        
+        models= Map_Tag
+        fields=('tag','maptab')
+    
+    
+        
+    

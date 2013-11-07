@@ -11,8 +11,8 @@ from django.conf import settings
 
 
 def index(request):
-    print  "xxx"
-    print  'root_path'+settings.ROOT_PATH
+    #print  "xxx"
+    #print  'root_path'+settings.ROOT_PATH
     return render_to_response('index.html')
     
     
@@ -54,6 +54,8 @@ class ArticleList(APIView):
     #----------------------------------------------------------------------
     
     def get(self,request,format='json'):
+        
+        #article = 
     
         
         

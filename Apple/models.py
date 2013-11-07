@@ -33,6 +33,18 @@ class Photo(models.Model):
         return self.photoName
     
     
+    
+class Article(models.Model):
+    ''' '''
+    title = models.CharField(max_length=128)
+    content = models.TextField()
+    user = models.ForeignKey(User)
+    
+    def __unicode__(self):
+        return self.title
+    
+    
+
 class Tag(models.Model):
     ''' '''
     tagName = models.CharField(max_length=64)
@@ -42,13 +54,26 @@ class Tag(models.Model):
         return self.tagName
     
     
-class Article(models.Model):
-    ''' '''
-    title = models.CharField(max_length=128)
-    content = models.TextField()
-    tag = models.ForeignKey(Tag)
-    user = models.ForeignKey(User)
+
+class Map_Tab(models.Model) :
+    """"""
+    tabName = models.CharField(max_length=120)
+
+
+
+class Map_Tag(models.Model):
     
-    def __unicode__(self):
-        return self.title
+    tag = models.ForeignKey(Tag)
+    
+    # description the tag relate the 'table' name id
+    
+    maptab = models.ForeignKey(Map_Tab)
+    
+    
+
+    
+    
+        
+        
+    
     
