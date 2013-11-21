@@ -5,8 +5,8 @@ class User(models.Model):
     userName = models.CharField(max_length=128)
     passWord = models.CharField(max_length=128)
     #0 -- female, 1 -- male
-    gender = models.IntegerField()
-    mail = models.CharField(max_length=128)
+    gender = models.IntegerField(default=1,blank=True)
+    mail = models.CharField(max_length=128,blank=True)
     registerTime = models.DateTimeField(auto_now_add=True)
     
     def __unicode__(self):
@@ -15,7 +15,7 @@ class User(models.Model):
 class Album(models.Model):
     ''' '''
     albumName = models.CharField(max_length=128)
-    albumDescription = models.TextField()
+    albumDescription = models.TextField(blank=True)
     albumCreateTime = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User)
     
@@ -48,7 +48,7 @@ class Article(models.Model):
 class Tag(models.Model):
     ''' '''
     tagName = models.CharField(max_length=64)
-    tagDesctription = models.CharField(max_length=128)
+    tagDesctription = models.CharField(max_length=128,null=True)
     
     def __unicode__(self):
         return self.tagName

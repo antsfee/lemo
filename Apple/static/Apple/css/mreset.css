@@ -1,13 +1,10 @@
-@charset "utf-8"
-
-html,body{margin:0; padding:0;}
-
+body{margin:0; padding:0;}
 div,p{margin:0; padding:0;}
+form,input,legend,table,tbody,tfoot,tr,thead,td,th,fieldset{border-collapse:collapse;border-spacing: 0; border:none;}
 
-form,input,legend,table,tbody,tfoot,tr,thead,td,th{border-collapse:collapse; border-spaceing:0; border:none;}
+h1,h2,h3,h4,h5,h6{margin:0;padding:0;}
 
-
-ul,li,ol,dl,dt,dd{margin:0; padding:0; list-style:none; list-style-type:none;}
+ul,li,ol,dl,dt,dd,fieldset{margin:0; padding:0; }
 
 
 article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section,video,audio,canvas {
@@ -18,8 +15,9 @@ article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, s
 abbr,address,b,strong.blockquote,cite,acronym,strong,em,i,code,pre,samp{margin:0;padding:0;}
 
 
-ol, ul {
-	list-style: none;
+ ul,dl, li ,dl,dt{
+	
+	list-style:none; list-style-type:none;
 }
 blockquote, q {
 	quotes: none;
@@ -33,7 +31,7 @@ q:before, q:after {
 img , fieldset{border:none}
 
 
-a:link{	color:#1e0307;	}
-a:visited{	color:#1e0307;	}
-a:hover{	color:#1e0307;	}
-a:active{	color:#1e0307;	}
+a:link{	color:#4cc4ff; text-decoration:none;	}
+a:visited{	color:#4cc4ff; text-decoration: none;	}
+a:hover{	color:#4cc4ff;	}
+a:active{	color:#4cc4ff;	}

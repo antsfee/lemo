@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 from rest_framework.urlpatterns import format_suffix_patterns
 from serializers import UserSerializer
-from Apple.views import index , UserList 
+from Apple import views
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -27,9 +27,16 @@ urlpatterns = patterns('',
     # admin.autodiscover()
     
     #url(r'^/$','index'),
-    url(r'^user/', UserList.as_view()),
-  
-    url(r'^$',index),
+    
+    #url(r'^user/', views.UserList.as_view()),
+    
+    url(r'^register/$', views.RegisterT),
+    
+    url(r'^login/$',views.LoginT),
+    
+    url(r'^register/ActionRegister/',views.UserList.as_view()),
+    
+    url(r'^$',views.Index),
  
 )
 
