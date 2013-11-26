@@ -34,7 +34,9 @@ urlpatterns = patterns('',
     
     url(r'^login/$',views.LoginT),
     
-    url(r'^register/ActionRegister/',views.UserList.as_view()),
+    url(r'^login/actionLogin/$',views.UserLogin.as_view()),
+    
+    url(r'^register/actionRegister/',views.UserList.as_view()),
     
     url(r'^$',views.Index),
  
