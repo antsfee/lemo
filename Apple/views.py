@@ -11,6 +11,17 @@ from django.conf import settings
 from django.core.context_processors import csrf
 from rest_framework.renderers import JSONPRenderer
 from rest_framework.parsers import JSONParser
+import json
+
+class JsonResponse(HttpResponse):
+    ''' generate a json format response  '''
+    def __init__(self,content={},mimetype=None,status=None,content_type=None):
+        if not content_type:
+            content_type='application/json'
+        
+        super(JsonResponse,self).__init__(json.dumps(content),mimetype=mimetype,status=status,content_type=content_type)
+        
+
 
 def Index(request):
     #print  "xxx"
@@ -121,63 +132,93 @@ class UserLogin(APIView):
     
     def post(self,request,format='json'):
         
-        print request.DATA
+        #print request.DATA
         
         loginData=UserSerializer(request.DATA).data
         
-        print 'current loginData value is: ',loginData 
+        #print 'current loginData value is: ',loginData 
         
-        obj=User.objects.get(userName__exact=loginData['userName'])
+        #print 'current loginData length :  ',len(loginData)
+        try:
         
-        #dir(obj)
-        actionStatue = {'loginName':False,'loginPass':False}
+            obj=User.objects.get(userName__exact=loginData['userName'])
+            
         
-        if obj.userName==loginData['userName']:
+        except:
             
-            """ make sure username is valid  """
+            return JsonResponse(content={'loginName':'null'}, status=200, 
+                               )
+        
+        actionStatue = {}
+        
+        print 'post method get userName item:  ',request.POST['userName']
+        
+        if loginData['passWord'] is None:
             
-            actionStatue['loginName'] = True
+            ''' passWord is None mean to check userName only is not form submit '''
             
-            loginStaute = JSONPRenderer().render(actionStatue)
-            
-            Response(data=loginStaute,status=200)
-            
-            #print loginStaute
-            
-            if obj.passWord == loginData['passWord']:
+            if obj.userName == loginData['userName']:
                 
-                ''' make sure  password is valid'''
-                actionStatue['loginPass'] = True
-                            
-                loginStaute = JSONPRenderer().render(actionStatue)
-                            
-                Response(data=loginStaute,status=200)
-                            
-                #print loginStaute                
-                
+            
+                actionStatue['loginName'] = True
+            
+            
+                return JsonResponse(content=actionStatue,status=200)
+            
             else:
                 
-                ''' current password is not valid response statue stop the programe '''
+                return JsonResponse(content=actionStatue,status=200)
                 
-                actionStatue['loginPass'] = False
-                            
-                loginStaute = JSONPRenderer().render(actionStatue)
-                            
-                return Response(data=loginStaute,status=200)
-                
-                            
-                #print loginStaute                
-                
+        
         else:
             
-            ''' current username is not valid response statue and stop the programe return '''
-            actionStatue['loginName'] = False
-                        
-            loginStaute = JSONPRenderer().render(actionStatue)
-                        
-            return Response(data=loginStaute,status=200)
-                        
-            #print loginStaute            
+            ''' login form submit  check login data '''
+        
+            if obj.userName == loginData['userName']:
+            
+                """ make sure username is valid  """
+            
+                actionStatue['loginName'] = True
+            
+            
+                if obj.passWord == loginData['passWord']:
+                
+                    ''' make sure  password is valid'''
+                
+                    actionStatue['loginPass'] = True
+                            
+                    #loginStaute = JSONPRenderer().render(actionStatue)
+                    
+                    print 'current user id is ', obj.id 
+                
+                    request.session['user_id'] = obj.id
+                            
+                    return JsonResponse(actionStatue,status=200)
+                                        
+                
+                else:
+                
+                    '''   '''
+                
+                    actionStatue['loginPass'] = False
+                            
+                    #loginStaute = JSONPRenderer().render(actionStatue)
+                            
+                    return JsonResponse(actionStatue,status=200)
+                
+            else:
+                ''' name is not  '''
+                
+                actionStatue['loginName'] = False
+                return JsonResponse(content=actionStatue,status=200)
+
+
+
+
+
+
+                
+                 
             
             
             

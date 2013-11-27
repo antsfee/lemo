@@ -12,7 +12,7 @@ def rel(*x):
 
 ROOT_PATH = os.path.dirname(os.path.abspath(__file__)) 
 
-print "root path output"+ROOT_PATH
+#print "root path output"+ROOT_PATH
 #-----------------------------------
 DEBUG = True
 #TEMPLATE_DEBUG = DEBUG
@@ -116,6 +116,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 ROOT_URLCONF = 'Apple.urls'
@@ -176,3 +178,30 @@ LOGGING = {
         },
     }
 }
+
+
+
+
+CACHES={
+
+    'default':{
+    
+        'BACKEND':'django.core.cache.backends.memcached.MemcachedCache',
+        
+        'LOCATION':'127.0.0.1:11211'
+    
+        
+    
+    }
+
+
+
+}
+
+CACHE_BACKEND= 'memcached://127.0.0.1:11211'
+
+CACHE_MIDDLEWARE_SECOND=30
+
+SESSION_FILE_PATH='/home/loademan/cach_sess/'
+
+SESSION_ENGINE='django.contrib.sessions.backends.cache'
